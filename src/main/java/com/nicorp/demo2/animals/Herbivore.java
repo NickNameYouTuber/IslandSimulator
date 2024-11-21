@@ -5,8 +5,8 @@ import com.nicorp.demo2.island.Location;
 import com.nicorp.demo2.plants.Grass;
 
 public abstract class Herbivore extends Animal {
-    public Herbivore(String name, int maxAge, int maxHunger, double reproductionChance) {
-        super(name, maxAge, maxHunger, reproductionChance);
+    public Herbivore(String name, int maxAge, int maxHunger, int weight, double reproductionChance) {
+        super(name, maxAge, maxHunger, reproductionChance, weight);
     }
 
     @Override

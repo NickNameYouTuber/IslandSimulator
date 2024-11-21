@@ -10,6 +10,7 @@ module com.nicorp.demo2 {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.logging;
 
     opens com.nicorp.demo2 to javafx.fxml;
     exports com.nicorp.demo2;

@@ -1,13 +1,12 @@
 package com.nicorp.demo2.animals;
 
 import com.nicorp.demo2.IslandSimulation;
-import com.nicorp.demo2.island.Island;
 import com.nicorp.demo2.island.Location;
 
 public class Rabbit extends Herbivore {
 
     public Rabbit(String name) {
-        super(name, 10, 5, 0.2);
+        super(name, 10, 5, 5,0.2);
     }
 
     @Override

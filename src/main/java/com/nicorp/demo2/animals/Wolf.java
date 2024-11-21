@@ -10,7 +10,7 @@ import java.util.List;
 public class Wolf extends Carnivore {
 
     public Wolf(String name) {
-        super(name, 20, 10, 0.1, 1);
+        super(name, 20, 10, 0.1, 10, 1);
     }
 
     @Override

@@ -1,14 +1,9 @@
 package com.nicorp.demo2.island;
 
 import com.nicorp.demo2.animals.*;
-import com.nicorp.demo2.plants.Grass;
+import com.nicorp.demo2.utils.RandomUtils;
 
 import java.util.*;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import java.util.Random;
 
 public class Island {
     private int rows;
@@ -41,23 +36,21 @@ public class Island {
     }
 
     public void placeEntities(int rabbitAmount, int wolfAmount) {
-        Random random = new Random();
         for (int i = 0; i < grassAmount; i++) {
-            int x = random.nextInt(rows);
-            int y = random.nextInt(cols);
+            int x = RandomUtils.nextInt(rows);
+            int y = RandomUtils.nextInt(cols);
             grid[x][y].setHasGrass(true);
         }
 
-        // Пример размещения животных (например, 10 кроликов и 5 волков)
         for (int i = 0; i < rabbitAmount; i++) {
-            int x = random.nextInt(rows);
-            int y = random.nextInt(cols);
+            int x = RandomUtils.nextInt(rows);
+            int y = RandomUtils.nextInt(cols);
             grid[x][y].addAnimal(new Rabbit("Rabbit " + i));
         }
 
         for (int i = 0; i < wolfAmount; i++) {
-            int x = random.nextInt(rows);
-            int y = random.nextInt(cols);
+            int x = RandomUtils.nextInt(rows);
+            int y = RandomUtils.nextInt(cols);
             grid[x][y].addAnimal(new Wolf("Wolf " + i));
         }
     }
