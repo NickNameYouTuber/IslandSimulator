@@ -57,4 +57,15 @@ public class Location {
     public int getY() {
         return y;
     }
+
+    public boolean hasAnotherAnimal(Animal animal) {
+        // Надо узнать есть ли в локации другие животные, кроме этого животного того же вида
+        // Если есть, то вернуть true, иначе вернуть false
+        for (Animal otherAnimal : animals) {
+            if (otherAnimal.getClass() == animal.getClass() && otherAnimal != animal) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

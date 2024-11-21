@@ -6,11 +6,11 @@ import com.nicorp.demo2.island.Location;
 
 public class Rabbit extends Herbivore {
     public Rabbit() {
-        super("Rabbit", 10, 5, 0.2);
+        super("Rabbit", 10, 5, 1);
     }
 
     public Rabbit(String name) {
-        super(name, 10, 5, 0.2);
+        super(name, 10, 5, 1);
     }
 
     @Override
@@ -24,7 +24,7 @@ public class Rabbit extends Herbivore {
     }
 
     @Override
-    protected Animal createChild() {
-        return new Rabbit();
+    protected Animal createChild(String name) {
+        return new Rabbit(name);
     }
 }

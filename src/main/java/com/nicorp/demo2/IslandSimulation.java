@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -77,13 +78,15 @@ public class IslandSimulation extends Application {
         for (int i = 0; i < island.getRows(); i++) {
             for (int j = 0; j < island.getCols(); j++) {
                 Location location = island.getLocation(i, j);
+                StackPane stackPane = new StackPane();
+
                 Rectangle rect = new Rectangle(30, 30);
                 if (location.hasGrass()) {
                     rect.setFill(Color.GREEN);
                 } else {
                     rect.setFill(Color.YELLOW);
                 }
-                gridPane.add(rect, j, i);
+                stackPane.getChildren().add(rect);
 
                 for (Animal animal : location.getAnimals()) {
                     Rectangle animalRect = new Rectangle(10, 10);
@@ -92,8 +95,10 @@ public class IslandSimulation extends Application {
                     } else if (animal instanceof Rabbit) {
                         animalRect.setFill(Color.BLUE);
                     }
-                    gridPane.add(animalRect, j, i);
+                    stackPane.getChildren().add(animalRect);
                 }
+
+                gridPane.add(stackPane, j, i);
             }
         }
     }

@@ -30,22 +30,15 @@ public abstract class Animal {
     }
 
     public void reproduce(Island island) {
-//        Random random = new Random();
-//        if (random.nextDouble() < reproductionChance) {
-//            Location location = island.getLocation(x, y);
-//            if (location.getAnimals().size() < 4) {
-//                Animal child = createChild();
-//                location.addAnimal(child);
-//                if (this instanceof Rabbit) {
-//                    island.incrementRabbitsBorn();
-//                } else if (this instanceof Wolf) {
-//                    island.incrementWolvesBorn();
-//                }
-//            }
-//        }
+        Random random = new Random();
+        if (random.nextDouble() < reproductionChance && island.getLocation(x, y).getAnimals().size() < 4 && island.getLocation(x, y).hasAnotherAnimal(this)) {
+            System.out.println("Animal " + name + " reproduced");
+            Animal child = createChild(name + "_" + name.charAt(name.length() - 1));
+            island.getLocation(x, y).addAnimal(child);
+        }
     }
 
-    protected abstract Animal createChild();
+    protected abstract Animal createChild(String name);
 
     public void move(Island island) {
         Random random = new Random();
@@ -98,4 +91,6 @@ public abstract class Animal {
     public String getName() {
         return name;
     }
+
+    public Class getAnimalClass() { return this.getClass(); }
 }

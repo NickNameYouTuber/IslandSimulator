@@ -22,7 +22,7 @@ public class Wolf extends Carnivore {
     }
 
     @Override
-    protected Animal createChild() {
-        return new Wolf();
+    protected Animal createChild(String name) {
+        return new Wolf(name);
     }
 }
