@@ -1,0 +1,95 @@
+/* Общие стили для сетки */
+.grid-pane {
+    -fx-background-color: #f5f5f5;
+    -fx-padding: 20px;
+    -fx-grid-lines-visible: true;
+}
+
+.grid-cell {
+    -fx-alignment: center;
+    -fx-font-size: 14px;
+    -fx-padding: 15px;
+    -fx-min-width: 50px;
+    -fx-min-height: 50px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 1);
+}
+
+.wolf {
+    -fx-background-color: linear-gradient(to bottom right, #ff9999, #ff6666);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-border-color: #ff4444;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
+.rabbit {
+    -fx-background-color: linear-gradient(to bottom right, #99ff99, #66ff66);
+    -fx-text-fill: #006600;
+    -fx-font-weight: bold;
+    -fx-border-color: #44ff44;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
+/* Стили для панели управления */
+.control-panel {
+    -fx-background-color: white;
+    -fx-padding: 15px;
+    -fx-spacing: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, -1);
+}
+
+.button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 8px 16px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #45a049;
+}
+
+.button.stop {
+    -fx-background-color: #f44336;
+}
+
+.button.stop:hover {
+    -fx-background-color: #da190b;
+}
+
+.text-field {
+    -fx-padding: 5px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-color: #ddd;
+    -fx-border-width: 1px;
+}
+
+.label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+
+.grid-pane {
+    -fx-padding: 10;
+    -fx-hgap: 5;
+    -fx-vgap: 5;
+}
+
+.button {
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+}
+
+.button:hover {
+    -fx-background-color: #45a049;
+}
