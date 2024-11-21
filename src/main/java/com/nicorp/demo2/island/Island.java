@@ -16,10 +16,10 @@ public class Island {
     private Location[][] grid;
     private int grassAmount;
     private int totalYears;
-    private int totalRabbitsBorn;
-    private int totalWolvesBorn;
+    private static int totalRabbitsBorn;
+    private static int totalWolvesBorn;
     private static int totalRabbitsKilled;
-    private int totalWolvesKilled;
+    private static int totalWolvesKilled;
     private int totalRabbitsStarved;
     private int totalWolvesStarved;
 
@@ -126,20 +126,20 @@ public class Island {
         return false;
     }
 
-    public void incrementRabbitsBorn() {
-        totalRabbitsBorn++;
+    public static void incrementAnimalsKilled(Animal animal) {
+        if (animal instanceof Rabbit) {
+            totalRabbitsKilled++;
+        } else if (animal instanceof Wolf) {
+            totalWolvesKilled++;
+        }
     }
 
-    public void incrementWolvesBorn() {
-        totalWolvesBorn++;
-    }
-
-    public static void incrementRabbitsKilled() {
-        totalRabbitsKilled++;
-    }
-
-    public void incrementWolvesKilled() {
-        totalWolvesKilled++;
+    public static void incrementAnimalsBorn(Animal animal) {
+        if (animal instanceof Rabbit) {
+            totalRabbitsBorn++;
+        } else if (animal instanceof Wolf) {
+            totalWolvesBorn++;
+        }
     }
 
     public String getStatistics() {

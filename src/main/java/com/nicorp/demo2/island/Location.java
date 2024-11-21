@@ -5,16 +5,6 @@ import com.nicorp.demo2.plants.Grass;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.ArrayList;
-import java.util.List;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Location {
     private int x;
@@ -59,8 +49,6 @@ public class Location {
     }
 
     public boolean hasAnotherAnimal(Animal animal) {
-        // Надо узнать есть ли в локации другие животные, кроме этого животного того же вида
-        // Если есть, то вернуть true, иначе вернуть false
         for (Animal otherAnimal : animals) {
             if (otherAnimal.getClass() == animal.getClass() && otherAnimal != animal) {
                 return true;

@@ -22,7 +22,7 @@ public abstract class Carnivore extends Animal {
     @Override
     public void eat() {
         if (hunger > 0) {
-            hunger--;
+            hunger-=3;
         }
     }
 
@@ -31,7 +31,7 @@ public abstract class Carnivore extends Animal {
         for (Animal animal : location.getAnimals()) {
             if (animal instanceof Herbivore && random.nextDouble() < killChance) {
                 System.out.println("Carnivore " + name + " killed Herbivore " + animal.getName());
-                Island.incrementRabbitsKilled();
+                Island.incrementAnimalsKilled(animal);
                 location.removeAnimal(animal);
                 hunger = 0;
                 break;

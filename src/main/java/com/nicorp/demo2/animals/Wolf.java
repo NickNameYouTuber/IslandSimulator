@@ -8,9 +8,6 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Wolf extends Carnivore {
-    public Wolf() {
-        super("Wolf", 20, 10, 0.1, 1);
-    }
 
     public Wolf(String name) {
         super(name, 20, 10, 0.1, 1);
