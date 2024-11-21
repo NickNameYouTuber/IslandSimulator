@@ -12,7 +12,7 @@ public abstract class Herbivore extends Animal {
     @Override
     public void eat() {
         if (hunger > 0) {
-            hunger--;
+            hunger-=2;
         }
     }
 }

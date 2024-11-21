@@ -84,7 +84,7 @@ public class IslandSimulation extends Application {
                 if (location.hasGrass()) {
                     rect.setFill(Color.GREEN);
                 } else {
-                    rect.setFill(Color.YELLOW);
+                    rect.setFill(Color.BEIGE);
                 }
                 stackPane.getChildren().add(rect);
 

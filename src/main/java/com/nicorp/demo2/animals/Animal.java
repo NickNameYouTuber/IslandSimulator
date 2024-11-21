@@ -31,7 +31,7 @@ public abstract class Animal {
 
     public void reproduce(Island island) {
         Random random = new Random();
-        if (random.nextDouble() < reproductionChance && island.getLocation(x, y).getAnimals().size() < 4 && island.getLocation(x, y).hasAnotherAnimal(this)) {
+        if (random.nextDouble() < reproductionChance && island.getLocation(x, y).getAnimals().size() < 4 && island.getLocation(x, y).hasAnotherAnimal(this) && hunger <= maxHunger / 2) {
             System.out.println("Animal " + name + " reproduced");
             Animal child = createChild(name + "_" + name.charAt(name.length() - 1));
             island.getLocation(x, y).addAnimal(child);
