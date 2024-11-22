@@ -5,11 +5,14 @@ import com.nicorp.demo2.island.Island;
 import com.nicorp.demo2.island.Location;
 import com.nicorp.demo2.utils.RandomUtils;
 
+import static com.nicorp.demo2.island.Island.incrementBorn;
+import static com.nicorp.demo2.island.Island.incrementKilled;
+
 public abstract class Animal {
     protected String name;
-    public int age;
+    public float age;
     public int maxAge;
-    public int hunger;
+    public float hunger;
     public int maxHunger;
     public float weight;
     public float foodForFullSaturation;
@@ -35,6 +38,7 @@ public abstract class Animal {
         if (RandomUtils.nextDouble() < reproductionChance && island.getLocation(x, y).getAnimals().size() < 4 && island.getLocation(x, y).hasAnotherAnimal(this) && hunger <= maxHunger / 2) {
             System.out.println("Animal " + name + " reproduced");
             Animal child = createChild(name + "_" + name.charAt(name.length() - 1));
+            incrementBorn(child);
             island.getLocation(x, y).addAnimal(child);
         }
     }
@@ -58,11 +62,11 @@ public abstract class Animal {
     }
 
     public void age() {
-        age++;
+        age += 1.0f/12.0f;
     }
 
     public void increaseHunger() {
-        hunger++;
+        hunger+=maxHunger/20.0f;
     }
 
     public boolean isDead() {
@@ -70,7 +74,8 @@ public abstract class Animal {
             System.out.println("Animal " + name + " is dead of age");
             die();
             return true;
-        } else if (hunger > maxHunger) {
+        }
+        if (hunger > maxHunger) {
             System.out.println("Animal " + name + " is dying of hunger");
             die();
             return true;
@@ -81,6 +86,7 @@ public abstract class Animal {
     public void die() {
         Location location = IslandSimulation.island.getLocation(x, y);
         location.removeAnimal(this);
+        incrementKilled(this);
     }
 
     public void setPosition(int x, int y) {

@@ -12,20 +12,19 @@ public class Island {
     private int cols;
     private Location[][] grid;
     private int grassAmount;
-    private int totalYears;
-    private static int totalRabbitsBorn;
-    private static int totalWolvesBorn;
-    private static int totalRabbitsKilled;
-    private static int totalWolvesKilled;
-    private int totalRabbitsStarved;
-    private int totalWolvesStarved;
+    public static int totalYears;
 
-    public Island(int rows, int cols, int grassAmount, int rabbitAmount, int wolfAmount, int sheepAmount) {
+    // Use maps to store statistics for all animal types
+    private static Map<String, Integer> totalBorn = new HashMap<>();
+    private static Map<String, Integer> totalKilled = new HashMap<>();
+    private static Map<String, Integer> totalStarved = new HashMap<>();
+
+    public Island(int rows, int cols, int grassAmount, Map<String, Integer> animalAmounts) {
         this.rows = rows;
         this.cols = cols;
         this.grassAmount = grassAmount;
         initializeGrid();
-        placeEntities(rabbitAmount, wolfAmount, sheepAmount);
+        placeEntities(animalAmounts);
     }
 
     public void initializeGrid() {
@@ -37,73 +36,65 @@ public class Island {
         }
     }
 
-    public void placeEntities(int rabbitAmount, int wolfAmount, int sheepAmount) {
-        JSONObject rabbitConfig = ConfigReader.getAnimalConfig("Rabbit");
-        JSONObject wolfConfig = ConfigReader.getAnimalConfig("Wolf");
-
+    public void placeEntities(Map<String, Integer> animalAmounts) {
         for (int i = 0; i < grassAmount; i++) {
             int x = RandomUtils.nextInt(rows);
             int y = RandomUtils.nextInt(cols);
             grid[x][y].setHasGrass(true);
         }
 
-        for (int i = 0; i < rabbitAmount; i++) {
-            int x = RandomUtils.nextInt(rows);
-            int y = RandomUtils.nextInt(cols);
-            grid[x][y].addAnimal(new Rabbit("Rabbit " + i));
-        }
+        for (Map.Entry<String, Integer> entry : animalAmounts.entrySet()) {
+            String animalType = entry.getKey();
+            int amount = entry.getValue();
 
-        for (int i = 0; i < wolfAmount; i++) {
-            int x = RandomUtils.nextInt(rows);
-            int y = RandomUtils.nextInt(cols);
-            grid[x][y].addAnimal(new Wolf("Wolf " + i));
-        }
+            for (int i = 0; i < amount; i++) {
+                int x = RandomUtils.nextInt(rows);
+                int y = RandomUtils.nextInt(cols);
+                Animal animal = createAnimal(animalType, animalType + " " + i);
+                grid[x][y].addAnimal(animal);
 
-        for (int i = 0; i < sheepAmount; i++) {
-            int x = RandomUtils.nextInt(rows);
-            int y = RandomUtils.nextInt(cols);
-            grid[x][y].addAnimal(new Sheep("Sheep " + i));
-        }
-    }
-
-    public void updateGrid() {
-        totalYears++;
-        updateAnimals();
-        moveAnimals();
-    }
-
-    private void updateAnimals() {
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                Location location = grid[i][j];
-                List<Animal> animals = new ArrayList<>(location.getAnimals());
-                for (Animal animal : animals) {
-                    animal.eat();
-                    animal.reproduce(this);
-                    animal.age();
-                    animal.increaseHunger();
-                    if (animal.isDead()) {
-                        location.removeAnimal(animal);
-                        if (animal instanceof Rabbit) {
-                            totalRabbitsStarved++;
-                        } else if (animal instanceof Wolf) {
-                            totalWolvesStarved++;
-                        }
-                    }
-                }
+                // Initialize counts for new animal types
+                totalBorn.putIfAbsent(animalType, 0);
+                totalKilled.putIfAbsent(animalType, 0);
+                totalStarved.putIfAbsent(animalType, 0);
             }
         }
     }
 
-    private void moveAnimals() {
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                Location location = grid[i][j];
-                List<Animal> animals = new ArrayList<>(location.getAnimals());
-                for (Animal animal : animals) {
-                    animal.move(this);
-                }
-            }
+    private Animal createAnimal(String animalType, String name) {
+        switch (animalType) {
+            case "Rabbit":
+                return new Rabbit(name);
+            case "Wolf":
+                return new Wolf(name);
+            case "Sheep":
+                return new Sheep(name);
+            case "Boa":
+                return new Boa(name);
+            case "Fox":
+                return new Fox(name);
+            case "Bear":
+                return new Bear(name);
+            case "Eagle":
+                return new Eagle(name);
+            case "Horse":
+                return new Horse(name);
+            case "Deer":
+                return new Deer(name);
+            case "Mouse":
+                return new Mouse(name);
+            case "Goat":
+                return new Goat(name);
+            case "Boar":
+                return new Boar(name);
+            case "Buffalo":
+                return new Buffalo(name);
+            case "Duck":
+                return new Duck(name);
+            case "Caterpillar":
+                return new Caterpillar(name);
+            default:
+                throw new IllegalArgumentException("Unknown animal type: " + animalType);
         }
     }
 
@@ -130,29 +121,43 @@ public class Island {
         return false;
     }
 
-    public static void incrementAnimalsKilled(Animal animal) {
-        if (animal instanceof Rabbit) {
-            totalRabbitsKilled++;
-        } else if (animal instanceof Wolf) {
-            totalWolvesKilled++;
-        }
+    // Method to increment born count
+    public static void incrementBorn(Animal animal) {
+        String type = animal.getClass().getSimpleName();
+        totalBorn.put(type, totalBorn.get(type) + 1);
     }
 
-    public static void incrementAnimalsBorn(Animal animal) {
-        if (animal instanceof Rabbit) {
-            totalRabbitsBorn++;
-        } else if (animal instanceof Wolf) {
-            totalWolvesBorn++;
-        }
+    // Method to increment killed count
+    public static void incrementKilled(Animal animal) {
+        String type = animal.getClass().getSimpleName();
+        totalKilled.put(type, totalKilled.get(type) + 1);
+    }
+
+    // Method to increment starved count
+    public static void incrementStarved(Animal animal) {
+        String type = animal.getClass().getSimpleName();
+        totalStarved.put(type, totalStarved.get(type) + 1);
     }
 
     public String getStatistics() {
-        return "Total Years: " + totalYears +
-                "\nTotal Rabbits Born: " + totalRabbitsBorn +
-                "\nTotal Wolves Born: " + totalWolvesBorn +
-                "\nTotal Rabbits Killed: " + totalRabbitsKilled +
-                "\nTotal Wolves Killed: " + totalWolvesKilled +
-                "\nTotal Rabbits Starved: " + totalRabbitsStarved +
-                "\nTotal Wolves Starved: " + totalWolvesStarved;
+        StringBuilder stats = new StringBuilder();
+        stats.append("Total Years: ").append(totalYears).append("\n");
+
+        stats.append("Total Born:\n");
+        for (Map.Entry<String, Integer> entry : totalBorn.entrySet()) {
+            stats.append("  ").append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
+        }
+
+        stats.append("Total Killed:\n");
+        for (Map.Entry<String, Integer> entry : totalKilled.entrySet()) {
+            stats.append("  ").append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
+        }
+
+        stats.append("Total Starved:\n");
+        for (Map.Entry<String, Integer> entry : totalStarved.entrySet()) {
+            stats.append("  ").append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
+        }
+
+        return stats.toString();
     }
 }

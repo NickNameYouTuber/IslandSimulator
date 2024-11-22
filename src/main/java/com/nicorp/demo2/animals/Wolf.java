@@ -19,11 +19,6 @@ public class Wolf extends Carnivore {
     }
 
     @Override
-    public void eat() {
-        hunt(IslandSimulation.island.getLocation(x, y));
-    }
-
-    @Override
     protected Animal createChild(String name) {
         return new Wolf(name);
     }

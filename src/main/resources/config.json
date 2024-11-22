@@ -1,47 +1,47 @@
 {
   "animals": {
     "Rabbit": {
-      "maxAge": 10,
-      "maxHunger": 5,
+      "maxAge": 3,
+      "maxHunger": 10,
       "weight": 2,
       "maxPerCell": 150,
       "speed": 2,
-      "reproductionChance": 0.2,
+      "reproductionChance": 0,
       "foodForFullSaturation": 0.45,
       "eatProbabilities": {}
     },
     "Sheep": {
-      "maxAge": 10,
-      "maxHunger": 5,
+      "maxAge": 12,
+      "maxHunger": 10,
       "weight": 70,
       "maxPerCell": 140,
       "speed": 3,
-      "reproductionChance": 0.2,
+      "reproductionChance": 0,
       "foodForFullSaturation": 15,
       "eatProbabilities": {}
     },
     "Wolf": {
-      "maxAge": 10,
+      "maxAge": 8,
       "maxHunger": 10,
       "weight": 50,
       "maxPerCell": 30,
       "speed": 3,
-      "reproductionChance": 0.1,
+      "reproductionChance": 0,
       "foodForFullSaturation": 8,
       "eatProbabilities": {
         "Horse": 0.1,
         "Deer": 0.15,
-        "Rabbit": 0.6,
+        "Rabbit": 1,
         "Mouse": 0.8,
         "Goat": 0.6,
-        "Sheep": 0.7,
+        "Sheep": 1,
         "Boar": 0.15,
         "Buffalo": 0.1,
         "Duck": 0.4
       }
     },
     "Boa": {
-      "maxAge": 10,
+      "maxAge": 20,
       "maxHunger": 10,
       "weight": 15,
       "maxPerCell": 30,
@@ -55,7 +55,7 @@
       }
     },
     "Fox": {
-      "maxAge": 10,
+      "maxAge": 4,
       "maxHunger": 10,
       "weight": 8,
       "maxPerCell": 30,
@@ -70,7 +70,7 @@
       }
     },
     "Bear": {
-      "maxAge": 10,
+      "maxAge": 25,
       "maxHunger": 10,
       "weight": 500,
       "maxPerCell": 5,
@@ -91,7 +91,7 @@
       }
     },
     "Eagle": {
-      "maxAge": 10,
+      "maxAge": 20,
       "maxHunger": 10,
       "weight": 6,
       "maxPerCell": 20,
@@ -106,7 +106,7 @@
       }
     },
     "Horse": {
-      "maxAge": 10,
+      "maxAge": 25,
       "maxHunger": 10,
       "weight": 400,
       "maxPerCell": 20,
@@ -116,7 +116,7 @@
       "eatProbabilities": {}
     },
     "Deer": {
-      "maxAge": 10,
+      "maxAge": 12,
       "maxHunger": 10,
       "weight": 300,
       "maxPerCell": 20,
@@ -126,7 +126,7 @@
       "eatProbabilities": {}
     },
     "Mouse": {
-      "maxAge": 10,
+      "maxAge": 1,
       "maxHunger": 10,
       "weight": 0.05,
       "maxPerCell": 500,
@@ -138,7 +138,7 @@
       }
     },
     "Goat": {
-      "maxAge": 10,
+      "maxAge": 15,
       "maxHunger": 10,
       "weight": 60,
       "maxPerCell": 140,
@@ -148,7 +148,7 @@
       "eatProbabilities": {}
     },
     "Boar": {
-      "maxAge": 10,
+      "maxAge": 15,
       "maxHunger": 10,
       "weight": 400,
       "maxPerCell": 50,
@@ -161,7 +161,7 @@
       }
     },
     "Buffalo": {
-      "maxAge": 10,
+      "maxAge": 25,
       "maxHunger": 10,
       "weight": 700,
       "maxPerCell": 10,
@@ -183,7 +183,7 @@
       }
     },
     "Caterpillar": {
-      "maxAge": 10,
+      "maxAge": 1,
       "maxHunger": 10,
       "weight": 0.01,
       "maxPerCell": 1000,

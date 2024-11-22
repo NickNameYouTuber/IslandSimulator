@@ -5,17 +5,18 @@ import com.nicorp.demo2.plants.Grass;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Location {
     private int x;
     private int y;
-    private List<Animal> animals;
+    private CopyOnWriteArrayList<Animal> animals;
     private boolean hasGrass;
 
     public Location(int x, int y) {
         this.x = x;
         this.y = y;
-        this.animals = new ArrayList<>();
+        this.animals = new CopyOnWriteArrayList<>();
         this.hasGrass = false;
     }
 
