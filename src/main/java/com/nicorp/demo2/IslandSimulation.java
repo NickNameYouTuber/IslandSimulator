@@ -2,6 +2,7 @@ package com.nicorp.demo2;
 
 import com.nicorp.demo2.animals.Animal;
 import com.nicorp.demo2.animals.Rabbit;
+import com.nicorp.demo2.animals.Sheep;
 import com.nicorp.demo2.animals.Wolf;
 import com.nicorp.demo2.island.Island;
 import com.nicorp.demo2.island.Location;
@@ -67,7 +68,7 @@ public class IslandSimulation extends Application {
                             ", Max Age: " + animal.maxAge +
                             ", Hunger: " + animal.hunger +
                             ", Max Hunger: " + animal.maxHunger +
-                            ", Reproduction Chance: " + animal.reproductionChance);
+                            ", Reproduction Chance: " + String.format("%.1f", animal.reproductionChance));
                 }
             }
         }
@@ -94,6 +95,8 @@ public class IslandSimulation extends Application {
                         animalRect.setFill(Color.RED);
                     } else if (animal instanceof Rabbit) {
                         animalRect.setFill(Color.BLUE);
+                    } else if (animal instanceof Sheep) {
+                        animalRect.setFill(Color.GRAY);
                     }
                     stackPane.getChildren().add(animalRect);
                 }
@@ -110,8 +113,9 @@ public class IslandSimulation extends Application {
             int grassAmount = Integer.parseInt(grassAmountField.getText());
             int rabbitAmount = Integer.parseInt(rabbitAmountField.getText());
             int wolfAmount = Integer.parseInt(wolfAmountField.getText());
+            int sheepAmount = 5;
 
-            island = new Island(rows, cols, grassAmount, rabbitAmount, wolfAmount);
+            island = new Island(rows, cols, grassAmount, rabbitAmount, wolfAmount, sheepAmount);
             startSimulation();
         }
     }

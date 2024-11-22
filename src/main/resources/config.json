@@ -1,0 +1,196 @@
+{
+  "animals": {
+    "Rabbit": {
+      "maxAge": 10,
+      "maxHunger": 5,
+      "weight": 2,
+      "maxPerCell": 150,
+      "speed": 2,
+      "reproductionChance": 0.2,
+      "foodForFullSaturation": 0.45,
+      "eatProbabilities": {}
+    },
+    "Sheep": {
+      "maxAge": 10,
+      "maxHunger": 5,
+      "weight": 70,
+      "maxPerCell": 140,
+      "speed": 3,
+      "reproductionChance": 0.2,
+      "foodForFullSaturation": 15,
+      "eatProbabilities": {}
+    },
+    "Wolf": {
+      "maxAge": 10,
+      "maxHunger": 10,
+      "weight": 50,
+      "maxPerCell": 30,
+      "speed": 3,
+      "reproductionChance": 0.1,
+      "foodForFullSaturation": 8,
+      "eatProbabilities": {
+        "Horse": 0.1,
+        "Deer": 0.15,
+        "Rabbit": 0.6,
+        "Mouse": 0.8,
+        "Goat": 0.6,
+        "Sheep": 0.7,
+        "Boar": 0.15,
+        "Buffalo": 0.1,
+        "Duck": 0.4
+      }
+    },
+    "Boa": {
+      "maxAge": 10,
+      "maxHunger": 10,
+      "weight": 15,
+      "maxPerCell": 30,
+      "speed": 1,
+      "reproductionChance": 0.1,
+      "foodForFullSaturation": 3,
+      "eatProbabilities": {
+        "Fox": 0.15,
+        "Rabbit": 0.2,
+        "Mouse": 0.4
+      }
+    },
+    "Fox": {
+      "maxAge": 10,
+      "maxHunger": 10,
+      "weight": 8,
+      "maxPerCell": 30,
+      "speed": 2,
+      "reproductionChance": 0.1,
+      "foodForFullSaturation": 2,
+      "eatProbabilities": {
+        "Rabbit": 0.7,
+        "Mouse": 0.9,
+        "Duck": 0.6,
+        "Caterpillar": 0.4
+      }
+    },
+    "Bear": {
+      "maxAge": 10,
+      "maxHunger": 10,
+      "weight": 500,
+      "maxPerCell": 5,
+      "speed": 2,
+      "reproductionChance": 0.1,
+      "foodForFullSaturation": 80,
+      "eatProbabilities": {
+        "Boa": 0.8,
+        "Horse": 0.4,
+        "Deer": 0.8,
+        "Rabbit": 0.8,
+        "Mouse": 0.9,
+        "Goat": 0.7,
+        "Sheep": 0.7,
+        "Boar": 0.5,
+        "Buffalo": 0.2,
+        "Duck": 0.1
+      }
+    },
+    "Eagle": {
+      "maxAge": 10,
+      "maxHunger": 10,
+      "weight": 6,
+      "maxPerCell": 20,
+      "speed": 3,
+      "reproductionChance": 0.1,
+      "foodForFullSaturation": 1,
+      "eatProbabilities": {
+        "Fox": 0.1,
+        "Rabbit": 0.9,
+        "Mouse": 0.9,
+        "Duck": 0.8
+      }
+    },
+    "Horse": {
+      "maxAge": 10,
+      "maxHunger": 10,
+      "weight": 400,
+      "maxPerCell": 20,
+      "speed": 4,
+      "reproductionChance": 0.1,
+      "foodForFullSaturation": 60,
+      "eatProbabilities": {}
+    },
+    "Deer": {
+      "maxAge": 10,
+      "maxHunger": 10,
+      "weight": 300,
+      "maxPerCell": 20,
+      "speed": 4,
+      "reproductionChance": 0.1,
+      "foodForFullSaturation": 50,
+      "eatProbabilities": {}
+    },
+    "Mouse": {
+      "maxAge": 10,
+      "maxHunger": 10,
+      "weight": 0.05,
+      "maxPerCell": 500,
+      "speed": 1,
+      "reproductionChance": 0.1,
+      "foodForFullSaturation": 0.01,
+      "eatProbabilities": {
+        "Caterpillar": 0.9
+      }
+    },
+    "Goat": {
+      "maxAge": 10,
+      "maxHunger": 10,
+      "weight": 60,
+      "maxPerCell": 140,
+      "speed": 3,
+      "reproductionChance": 0.1,
+      "foodForFullSaturation": 10,
+      "eatProbabilities": {}
+    },
+    "Boar": {
+      "maxAge": 10,
+      "maxHunger": 10,
+      "weight": 400,
+      "maxPerCell": 50,
+      "speed": 2,
+      "reproductionChance": 0.1,
+      "foodForFullSaturation": 50,
+      "eatProbabilities": {
+        "Mouse": 0.5,
+        "Caterpillar": 0.9
+      }
+    },
+    "Buffalo": {
+      "maxAge": 10,
+      "maxHunger": 10,
+      "weight": 700,
+      "maxPerCell": 10,
+      "speed": 3,
+      "reproductionChance": 0.1,
+      "foodForFullSaturation": 100,
+      "eatProbabilities": {}
+    },
+    "Duck": {
+      "maxAge": 10,
+      "maxHunger": 10,
+      "weight": 1,
+      "maxPerCell": 200,
+      "speed": 4,
+      "reproductionChance": 0.1,
+      "foodForFullSaturation": 0.15,
+      "eatProbabilities": {
+        "Caterpillar": 0.9
+      }
+    },
+    "Caterpillar": {
+      "maxAge": 10,
+      "maxHunger": 10,
+      "weight": 0.01,
+      "maxPerCell": 1000,
+      "speed": 0,
+      "reproductionChance": 0.1,
+      "foodForFullSaturation": 0,
+      "eatProbabilities": {}
+    }
+  }
+}

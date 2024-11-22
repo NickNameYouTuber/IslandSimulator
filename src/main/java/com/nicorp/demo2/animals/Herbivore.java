@@ -11,8 +11,11 @@ public abstract class Herbivore extends Animal {
 
     @Override
     public void eat() {
-        if (hunger > 0) {
-            hunger-=2;
+        Location location = IslandSimulation.island.getLocation(x, y);
+        if (location.hasGrass()) {
+            System.out.println(name + " is eating grass");
+            super.eat();
+            location.setHasGrass(false);
         }
     }
 }

@@ -7,7 +7,7 @@ import com.nicorp.demo2.utils.RandomUtils;
 public abstract class Carnivore extends Animal {
     protected double killChance;
 
-    public Carnivore(String name, int maxAge, int maxHunger, double reproductionChance, int weight, double killChance) {
+    public Carnivore(String name, int maxAge, int maxHunger, double reproductionChance, float weight, double killChance) {
         super(name, maxAge, maxHunger, reproductionChance, weight);
         this.killChance = killChance;
     }

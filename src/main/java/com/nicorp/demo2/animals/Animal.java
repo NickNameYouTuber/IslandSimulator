@@ -11,12 +11,13 @@ public abstract class Animal {
     public int maxAge;
     public int hunger;
     public int maxHunger;
-    public int weight;
+    public float weight;
+    public float foodForFullSaturation;
     public double reproductionChance;
     protected int x;
     protected int y;
 
-    public Animal(String name, int maxAge, int maxHunger, double reproductionChance, int weight) {
+    public Animal(String name, int maxAge, int maxHunger, double reproductionChance, float weight) {
         this.name = name;
         this.maxAge = maxAge;
         this.maxHunger = maxHunger;

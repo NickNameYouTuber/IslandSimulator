@@ -1,7 +1,9 @@
 package com.nicorp.demo2.island;
 
 import com.nicorp.demo2.animals.*;
+import com.nicorp.demo2.config.ConfigReader;
 import com.nicorp.demo2.utils.RandomUtils;
+import org.json.JSONObject;
 
 import java.util.*;
 
@@ -18,12 +20,12 @@ public class Island {
     private int totalRabbitsStarved;
     private int totalWolvesStarved;
 
-    public Island(int rows, int cols, int grassAmount, int rabbitAmount, int wolfAmount) {
+    public Island(int rows, int cols, int grassAmount, int rabbitAmount, int wolfAmount, int sheepAmount) {
         this.rows = rows;
         this.cols = cols;
         this.grassAmount = grassAmount;
         initializeGrid();
-        placeEntities(rabbitAmount, wolfAmount);
+        placeEntities(rabbitAmount, wolfAmount, sheepAmount);
     }
 
     public void initializeGrid() {
@@ -35,7 +37,10 @@ public class Island {
         }
     }
 
-    public void placeEntities(int rabbitAmount, int wolfAmount) {
+    public void placeEntities(int rabbitAmount, int wolfAmount, int sheepAmount) {
+        JSONObject rabbitConfig = ConfigReader.getAnimalConfig("Rabbit");
+        JSONObject wolfConfig = ConfigReader.getAnimalConfig("Wolf");
+
         for (int i = 0; i < grassAmount; i++) {
             int x = RandomUtils.nextInt(rows);
             int y = RandomUtils.nextInt(cols);
@@ -52,6 +57,12 @@ public class Island {
             int x = RandomUtils.nextInt(rows);
             int y = RandomUtils.nextInt(cols);
             grid[x][y].addAnimal(new Wolf("Wolf " + i));
+        }
+
+        for (int i = 0; i < sheepAmount; i++) {
+            int x = RandomUtils.nextInt(rows);
+            int y = RandomUtils.nextInt(cols);
+            grid[x][y].addAnimal(new Sheep("Sheep " + i));
         }
     }
 

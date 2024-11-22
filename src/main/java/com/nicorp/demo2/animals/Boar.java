@@ -1,15 +1,14 @@
 package com.nicorp.demo2.animals;
 
-import com.nicorp.demo2.IslandSimulation;
-import com.nicorp.demo2.island.Location;
 import com.nicorp.demo2.config.ConfigReader;
 import org.json.JSONObject;
 
-public class Rabbit extends Herbivore {
+public class Boar extends Herbivore {
 
-    public Rabbit(String name) {
+    public Boar(String name) {
         super(name, 10, 5, 5, 0.2);
-        JSONObject config = ConfigReader.getAnimalConfig("Rabbit");
+
+        JSONObject config = ConfigReader.getAnimalConfig("Boar");
         this.weight = config.getInt("weight");
         this.maxHunger = config.getInt("maxHunger");
         this.maxAge = config.getInt("maxAge");
@@ -19,6 +18,6 @@ public class Rabbit extends Herbivore {
 
     @Override
     protected Animal createChild(String name) {
-        return new Rabbit(name);
+        return new Boar(name);
     }
 }
