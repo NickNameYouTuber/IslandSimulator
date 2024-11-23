@@ -86,7 +86,6 @@ public abstract class Animal {
     public void die() {
         Location location = IslandSimulation.island.getLocation(x, y);
         location.removeAnimal(this);
-        incrementKilled(this);
     }
 
     public void setPosition(int x, int y) {

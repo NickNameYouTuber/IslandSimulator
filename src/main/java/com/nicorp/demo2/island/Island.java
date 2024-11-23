@@ -141,7 +141,7 @@ public class Island {
 
     public String getStatistics() {
         StringBuilder stats = new StringBuilder();
-        stats.append("Total Years: ").append(totalYears).append("\n");
+        stats.append("Total Years: ").append(Math.ceil(totalYears/12.0f)).append("\n");
 
         stats.append("Total Born:\n");
         for (Map.Entry<String, Integer> entry : totalBorn.entrySet()) {

@@ -4,6 +4,7 @@ import com.nicorp.demo2.animals.Animal;
 import com.nicorp.demo2.animals.Rabbit;
 import com.nicorp.demo2.animals.Sheep;
 import com.nicorp.demo2.animals.Wolf;
+import com.nicorp.demo2.config.ConfigReader;
 import com.nicorp.demo2.island.Island;
 import com.nicorp.demo2.island.Location;
 import com.nicorp.demo2.tasks.AnimalLifecycleTask;
@@ -14,13 +15,11 @@ import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,8 +36,8 @@ public class IslandSimulation extends Application {
     private TextField rowsField;
     private TextField colsField;
     private TextField grassAmountField;
-    private TextField rabbitAmountField;
-    private TextField wolfAmountField;
+    private Map<String, TextField> animalAmountFields;
+    private Map<String, Map<String, TextField>> animalParameterFields;
 
     private ScheduledExecutorService scheduledExecutor;
     private ExecutorService animalTaskExecutor;
@@ -125,13 +124,26 @@ public class IslandSimulation extends Application {
 
     public void handleStartButtonAction(javafx.event.ActionEvent event) {
         if (!isSimulationRunning) {
-            Map<String, Integer> animalAmounts = new HashMap<>();
-            animalAmounts.put("Rabbit", 5);
-            animalAmounts.put("Wolf", 2);
-            animalAmounts.put("Sheep", 3);
-            // Add other animals...
+            int rows = Integer.parseInt(rowsField.getText());
+            int cols = Integer.parseInt(colsField.getText());
+            int grassAmount = Integer.parseInt(grassAmountField.getText());
 
-            island = new Island(10, 10, 10, animalAmounts);
+            Map<String, Integer> animalAmounts = new HashMap<>();
+            for (Map.Entry<String, TextField> entry : animalAmountFields.entrySet()) {
+                animalAmounts.put(entry.getKey(), Integer.parseInt(entry.getValue().getText()));
+            }
+
+            Map<String, Map<String, Object>> animalParameters = new HashMap<>();
+            for (Map.Entry<String, Map<String, TextField>> entry : animalParameterFields.entrySet()) {
+                String animalType = entry.getKey();
+                Map<String, Object> parameters = new HashMap<>();
+                for (Map.Entry<String, TextField> paramEntry : entry.getValue().entrySet()) {
+                    parameters.put(paramEntry.getKey(), Double.parseDouble(paramEntry.getValue().getText()));
+                }
+                animalParameters.put(animalType, parameters);
+            }
+
+            island = new Island(rows, cols, grassAmount, animalAmounts);
             startSimulation();
         }
     }
@@ -163,17 +175,43 @@ public class IslandSimulation extends Application {
         rowsField = new TextField("100");
         colsField = new TextField("100");
         grassAmountField = new TextField("1000");
-        rabbitAmountField = new TextField("50");
-        wolfAmountField = new TextField("20");
 
-        VBox parametersBox = new VBox(10,
+        animalAmountFields = new HashMap<>();
+        animalParameterFields = new HashMap<>();
+
+        // Create fields for animal amounts
+        VBox animalAmountBox = new VBox(10);
+        for (String animalType : getAnimalTypes()) {
+            TextField amountField = new TextField("0");
+            animalAmountFields.put(animalType, amountField);
+            animalAmountBox.getChildren().add(new HBox(10, new Label(animalType + " Amount:"), amountField));
+        }
+
+        // Create fields for animal parameters
+        VBox animalParameterBox = new VBox(10);
+        for (String animalType : getAnimalTypes()) {
+            Map<String, TextField> parameterFields = new HashMap<>();
+            JSONObject animalConfig = ConfigReader.getAnimalConfig(animalType);
+            for (String parameter : getAnimalParameters(animalType)) {
+                TextField parameterField = new TextField(animalConfig.get(parameter).toString());
+                parameterFields.put(parameter, parameterField);
+                animalParameterBox.getChildren().add(new HBox(10, new Label(animalType + " " + parameter + ":"), parameterField));
+            }
+            animalParameterFields.put(animalType, parameterFields);
+        }
+
+        // Wrap all parameters in a ScrollPane
+        VBox allParametersBox = new VBox(10,
                 new Label("Rows:"), rowsField,
                 new Label("Cols:"), colsField,
                 new Label("Grass Amount:"), grassAmountField,
-                new Label("Rabbit Amount:"), rabbitAmountField,
-                new Label("Wolf Amount:"), wolfAmountField,
+                new Label("Animal Amounts:"), animalAmountBox,
+                new Label("Animal Parameters:"), animalParameterBox,
                 startButton);
-        parametersBox.setAlignment(Pos.CENTER);
+        allParametersBox.setAlignment(Pos.CENTER);
+
+        ScrollPane parametersScrollPane = new ScrollPane(allParametersBox);
+        parametersScrollPane.setFitToWidth(true);
 
         ScrollPane scrollPane = new ScrollPane(gridPane);
         scrollPane.setFitToHeight(true);
@@ -181,7 +219,7 @@ public class IslandSimulation extends Application {
 
         BorderPane borderPane = new BorderPane();
         borderPane.setCenter(scrollPane);
-        borderPane.setRight(parametersBox);
+        borderPane.setRight(parametersScrollPane);
 
         Scene scene = new Scene(borderPane);
         primaryStage.setScene(scene);
@@ -197,6 +235,16 @@ public class IslandSimulation extends Application {
 
     public boolean isSimulationRunning() {
         return isSimulationRunning;
+    }
+
+    private List<String> getAnimalTypes() {
+        // Return a list of animal types
+        return List.of("Rabbit", "Wolf", "Sheep", "Boa", "Fox", "Bear", "Eagle", "Horse", "Deer", "Mouse", "Goat", "Boar", "Buffalo", "Duck", "Caterpillar");
+    }
+
+    private List<String> getAnimalParameters(String animalType) {
+        // Return a list of parameters for the given animal type
+        return List.of("maxAge", "maxHunger", "weight", "maxPerCell", "speed", "reproductionChance", "foodForFullSaturation");
     }
 
     public static void main(String[] args) {
