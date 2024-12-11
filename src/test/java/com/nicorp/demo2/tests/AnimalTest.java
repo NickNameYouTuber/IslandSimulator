@@ -29,7 +29,7 @@ class AnimalTest {
     void testMove() {
         int initialX = animal.x;
         int initialY = animal.y;
-//        animal.testMove(island);
+        animal.testMove(island);
         assertNotEquals(initialX, animal.x);
         assertNotEquals(initialY, animal.y);
     }
