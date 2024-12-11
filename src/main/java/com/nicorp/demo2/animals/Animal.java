@@ -17,8 +17,10 @@ public abstract class Animal {
     public float weight;
     public float foodForFullSaturation;
     public double reproductionChance;
-    protected int x;
-    protected int y;
+    public int x;
+    public int y;
+
+    public abstract void eat(Island island);
 
     public Animal(String name, int maxAge, int maxHunger, double reproductionChance, float weight) {
         this.name = name;
@@ -58,6 +60,16 @@ public abstract class Animal {
                 newLocation.addAnimal(this);
                 setPosition(newX, newY);
             }
+        }
+    }
+
+    public void testMove(Island island) {
+        int newX = x + 1;
+        int newY = y + 1;
+        if (newX >= 0 && newX < island.getRows() && newY >= 0 && newY < island.getCols()) {
+            island.getLocation(x, y).removeAnimal(this);
+            island.getLocation(newX, newY).addAnimal(this);
+            setPosition(newX, newY);
         }
     }
 

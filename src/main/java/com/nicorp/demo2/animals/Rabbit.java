@@ -17,6 +17,10 @@ public class Rabbit extends Herbivore {
         this.reproductionChance = config.getFloat("reproductionChance");
     }
 
+    public Rabbit(String name, int maxAge, int maxHunger, float reproductionChance, int weight) {
+        super(name, maxAge, maxHunger, weight, reproductionChance);
+    }
+
     @Override
     protected Animal createChild(String name) {
         return new Rabbit(name);

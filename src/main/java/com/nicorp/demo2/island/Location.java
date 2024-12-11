@@ -26,7 +26,9 @@ public class Location {
     }
 
     public void removeAnimal(Animal animal) {
+        float animalsSize = animals.size();
         animals.remove(animal);
+        assert animalsSize > animals.size();
     }
 
     public void setHasGrass(boolean hasGrass) {

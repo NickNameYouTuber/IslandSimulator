@@ -18,6 +18,10 @@ public class Wolf extends Carnivore {
         this.reproductionChance = config.getFloat("reproductionChance");
     }
 
+    public Wolf(String name, int maxAge, int maxHunger, double reproductionChance, float weight, double killChance) {
+        super(name, maxAge, maxHunger, reproductionChance, weight, killChance);
+    }
+
     @Override
     protected Animal createChild(String name) {
         return new Wolf(name);
